@@ -1,5 +1,5 @@
 from messytables.util import OrderedDict
-from collections import Mapping
+from collections.abc import Mapping
 from messytables.error import TableError, NoSuchPropertyError
 import io
 from messytables.compat23 import *
@@ -230,6 +230,9 @@ class RowSet(object):
         first argument and the row to be processed as the second
         argument. """
         self._processors.append(processor)
+
+    def raw(self, sample=False):
+        raise NotImplementedError
 
     def __iter__(self, sample=False):
         """ Apply processors to the row data. """
