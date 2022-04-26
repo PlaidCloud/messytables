@@ -13,10 +13,10 @@ from messytables.types import (StringType, DecimalType,
 ODS_NAMESPACES_TAG_MATCH = re.compile(
     b"(<office:document-content[^>]*>)", re.MULTILINE)
 ODS_TABLE_MATCH = re.compile(
-    b".*?(<table:table.*?<\/.*?:table>).*?", re.MULTILINE)
+    b".*?(<table:table.*?</.*?:table>).*?", re.MULTILINE)
 ODS_TABLE_NAME = re.compile(b'.*?table:name=\"(.*?)\".*?')
 ODS_ROW_MATCH = re.compile(
-    b".*?(<table:table-row.*?<\/.*?:table-row>).*?", re.MULTILINE)
+    b".*?(<table:table-row.*?</.*?:table-row>).*?", re.MULTILINE)
 
 NS_OPENDOCUMENT_PTTN = u"urn:oasis:names:tc:opendocument:xmlns:%s"
 NS_CAL_PTTN = u"urn:org:documentfoundation:names:experimental:calc:xmlns:%s"
@@ -139,7 +139,7 @@ class ODSRowSet(RowSet):
 
             ods_header = u"<wrapper {0}>"\
                 .format(" ".join('xmlns:{0}="{1}"'.format(k, v)
-                        for k, v in namespaces.iteritems())).encode('utf-8')
+                        for k, v in namespaces.items())).encode('utf-8')
             ods_footer = u"</wrapper>".encode('utf-8')
             self.namespace_tags = (ods_header, ods_footer)
 

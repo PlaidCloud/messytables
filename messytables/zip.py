@@ -28,7 +28,7 @@ class ZIPTableSet(messytables.TableSet):
                     filetables = messytables.any.any_tableset(
                         z.open(f), extension=ext, **kw)
                 except ValueError as e:
-                    found.append(f.filename + ": " + e.message)
+                    found.append(f.filename + ": " + str(e))
                     continue
 
                 tables.extend(filetables.tables)
